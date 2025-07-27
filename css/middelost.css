@@ -1,0 +1,28 @@
+h3 {
+  color: #5a1506;
+  text-transform: uppercase;
+}
+
+body.single-issue .entry-content {
+  border: thin solid #91230a;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.about-head {
+  line-height: 1;
+}
+
+.wp-block-kadence-infobox span.info-box-link {
+  /* Background blur behind the element */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  /* Optional: background color with transparency to get that frosted glass look */
+  background-color: rgba(255, 255, 255, 0.3);
+  /* Shadow around the element */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  /* Optional: add border for contrast */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/*# sourceMappingURL=middelost.css.map */

@@ -1,0 +1,13 @@
+/*
+Theme Name: MiddleLost Kadence
+Theme URI: https://middlelost
+Description: A child theme of Kadence for the MiddleLost site
+Author: Than Grove
+Template: kadence
+Version: 1.0.0
+Tags: custom, theme
+Text Domain: kadence-child
+*/
+
+/* Import Parent Theme Styles */
+@import url("../kadence/style.css");
