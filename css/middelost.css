@@ -9,8 +9,17 @@ body.single-issue .entry-content {
   padding: 0.5rem;
 }
 
+#primary-menu .current_page_item a {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 .about-head {
   line-height: 1;
+}
+
+.post-archive-hero-section .hero-section-overlay {
+  background-color: rgba(238, 195, 78, 0.4392156863);
 }
 
 .wp-block-kadence-infobox span.info-box-link {
@@ -23,6 +32,12 @@ body.single-issue .entry-content {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   /* Optional: add border for contrast */
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bibref {
+  margin: 0 80px 10px 40px !important;
+  padding-left: 2rem;
+  text-indent: -2rem;
 }
 
 /*# sourceMappingURL=middelost.css.map */

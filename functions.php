@@ -29,3 +29,85 @@ add_filter( 'single_template', function( $template ) {
     }
     return $template;
 });
+
+add_filter('kadence_form_submission', function ($submission) {
+    // Check the honeypot field
+    if (!empty($_POST['AddressHP'])) {
+        wp_die('Form submission rejected as spam.');
+    }
+    return $submission;
+});
+
+function issues_list_shortcode() {
+    $args = [
+        'post_type' => 'issue',
+        'posts_per_page' => -1,
+        'orderby' => 'date',
+        'order' => 'DESC',
+    ];
+
+    // Map seasons to a numeric value for sorting
+    $season_order = array(
+        'Winter' => 1,
+        'Spring' => 2,
+        'Summer' => 3,
+        'Fall'   => 4
+    );
+
+    $issues = new WP_Query($args);
+    $output = '';
+
+    // Collect all issues first
+    $all_issues = array();
+    while ($issues->have_posts()) {
+        $issues->the_post();
+
+        $issue_date = get_field('issue_date'); // e.g. "Winter 2025"
+        if ($issue_date) {
+            list($season, $year) = explode(' ', $issue_date);
+            $all_issues[] = array(
+                'ID' => get_the_ID(),        // store post ID
+                'title' => get_the_title(),
+                'thumbnail' => get_the_post_thumbnail(get_the_ID(), 'medium'),
+                'subtitle' => get_field('issue_title'),
+                'description' => get_field('issue_description'),
+                'issue_date' => $issue_date,
+                'year' => (int) $year,
+                'season' => $season_order[$season] ?? 0,
+                'permalink' => get_permalink(),
+            );
+        }
+    }
+
+    // Sort reverse chronological: latest year first, then latest season first
+    usort($all_issues, function($a, $b) {
+        return ($b['year'] <=> $a['year']) ?: ($b['season'] <=> $a['season']);
+    });
+
+
+// Build output
+    $output = '<div id="issues-list" class="container">';
+    foreach ($all_issues as $item) {
+        $link_start = '<a href="' . esc_url($item['permalink']) . '">';
+        $link_end = '</a>';
+
+        $output .= '<div class="issue row align-items-center mb-4">';
+        $output .= '<div class="col-12 col-md-3">' . $link_start . $item['thumbnail'] . $link_end . '</div>';
+        $output .= '<div class="col-12 col-md-9"><h2 class="mb-0">' . $link_start . esc_html($item['title']) . $link_end . '</h2>';
+
+        if ($item['subtitle']) {
+            $output .= '<h3 class="issue-subtitle m-0">' . $link_start . esc_html($item['subtitle']) . $link_end . '</h3>';
+        }
+
+        $output .= '<div class="issue-date">' . esc_html($item['issue_date']) . '</div>';
+
+        if ($item['description']) {
+            $output .= '<div class="issue-desc">' . esc_html($item['description']) . '</div>';
+        }
+
+        $output .= '</div></div>';
+    }
+    $output .= '</div>';
+    return $output;
+}
+add_shortcode('issues_list', 'issues_list_shortcode');

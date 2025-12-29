@@ -15,9 +15,22 @@ body.single-issue {
   }
 }
 
+#primary-menu {
+  .current_page_item {
+    a {
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  }
+}
+
 
 .about-head {
   line-height: 1
+}
+
+.post-archive-hero-section .hero-section-overlay {
+  background-color: #eec34e70;
 }
 
 
@@ -34,4 +47,10 @@ body.single-issue {
 
   /* Optional: add border for contrast */
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bibref {
+  margin: 0 80px 10px 40px !important;
+  padding-left: 2rem;
+  text-indent: -2rem;
 }
