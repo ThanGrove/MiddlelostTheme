@@ -38,7 +38,9 @@ add_filter('kadence_form_submission', function ($submission) {
     return $submission;
 });
 
-add_image_size( 'teaser-thumb', 350, 225, true ); // width, height, hard crop
+add_action('after_setup_theme', function() {
+    add_image_size('teaser-thumb', 350, 225, true); // exact width/height, hard crop
+});
 
 function issues_list_shortcode() {
     $args = [
