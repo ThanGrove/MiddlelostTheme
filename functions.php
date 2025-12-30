@@ -38,6 +38,8 @@ add_filter('kadence_form_submission', function ($submission) {
     return $submission;
 });
 
+add_image_size( 'teaser-thumb', 350, 225, true ); // width, height, hard crop
+
 function issues_list_shortcode() {
     $args = [
         'post_type' => 'issue',
@@ -68,7 +70,7 @@ function issues_list_shortcode() {
             $all_issues[] = array(
                 'ID' => get_the_ID(),        // store post ID
                 'title' => get_the_title(),
-                'thumbnail' => get_the_post_thumbnail(get_the_ID(), 'medium'),
+                'thumbnail' => get_the_post_thumbnail(get_the_ID(), 'teaser-thumb'),
                 'subtitle' => get_field('issue_title'),
                 'description' => get_field('issue_description'),
                 'issue_date' => $issue_date,
