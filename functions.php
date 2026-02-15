@@ -55,7 +55,8 @@ function issues_list_shortcode() {
         'Winter' => 1,
         'Spring' => 2,
         'Summer' => 3,
-        'Fall'   => 4
+        'Autumn'   => 4,
+        'Fall' => 4
     );
 
     $issues = new WP_Query($args);
