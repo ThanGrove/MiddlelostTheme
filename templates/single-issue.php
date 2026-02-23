@@ -23,7 +23,7 @@
                 <div class="col-md-6 offset-md-3">
                     Price:
                     <?php the_field('issue_cost'); ?>
-                    <a href="/contact?action=buy&issue=<?php echo get_field('issue_number'); ?>&cost=<?php echo $cost; ?>"
+                    <a href="/contact?type=buy&i=<?php echo get_field('issue_number'); ?>&cost=<?php echo str_replace('$', '', $cost); ?>"
                        class="btn btn-sm btn-success mx-3">Buy Now</a>
                 </div>
             </div>
