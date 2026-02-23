@@ -79,6 +79,7 @@ function issues_list_shortcode() {
                 'issue_date' => $issue_date,
                 'year' => (int) $year,
                 'season' => $season_order[$season] ?? 0,
+                'cost' => get_field('issue_cost'),
                 'permalink' => get_permalink(),
             );
         }
@@ -109,6 +110,10 @@ function issues_list_shortcode() {
         if ($item['description']) {
             $output .= '<div class="issue-desc">' . esc_html($item['description']) . '</div>';
         }
+        if ($item['cost']) {
+            $output .= '<div class="issue-cost">Price: ' . esc_html($item['cost']) . '</div>';
+        }
+
 
         $output .= '</div></div>';
     }
